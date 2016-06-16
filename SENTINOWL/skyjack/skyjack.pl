@@ -38,7 +38,7 @@ my $aircrack	= "aircrack-ng";
 my $airodump	= "airodump-ng";
 my $nodejs	= "nodejs";
 
-
+print "DRONE TO HACK: $droneToHack\n";
 # put device into monitor mode
 sudo($ifconfig, $interface, "down");
 

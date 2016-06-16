@@ -1,0 +1,9 @@
+DRONE TO HACK: E8:DE:27:95:6B:5D
+Running: ifconfig wlan1 down
+pid 5187
+Running: kill 5187
+Running: kill -HUP 5187
+Running: kill -9 5187
+Running: killall -9 aireplay-ng airodump-ng
+
+

@@ -32,7 +32,7 @@ var server = http.createServer(function(request, response) {
   request.on('end', function () {
       console.log('body: ' + body);
       var essid = JSON.parse(body).essid;
-
+      var macAddr = JSON.parse(body).mac;
       function connectMe(){
         exec('sudo iwconfig '+niface1+" essid "+essid,      // command line argument directly in string
             function (error, stdout, stderr) {            // one easy function to capture data/errors
@@ -102,10 +102,11 @@ var server = http.createServer(function(request, response) {
                 response.end();
               break;
           case '/Hack':
+                console.log("--------------------"+macAddr);
                 response.writeHead(200, {
                     'Content-Type': 'text'
                 });
-                exec('perl SENTINOWL/skyjack/skyjack.pl '+'MAC > log.txt');
+                exec('perl SENTINOWL/skyjack/skyjack.pl '+macAddr+' > log.txt');
                 response.write("OK");
                 response.end();
 
