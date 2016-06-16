@@ -17,7 +17,7 @@ var util = require('util');
 var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
 
-var niface1 = "wlx00c0ca6d01bf";
+var niface1 = "wlan1";
 var niface2 = "wlan0";
 
 var server = http.createServer(function(request, response) {
@@ -105,7 +105,7 @@ var server = http.createServer(function(request, response) {
                 response.writeHead(200, {
                     'Content-Type': 'text'
                 });
-                exec('perl SENTINOWL/');
+                exec('perl SENTINOWL/skyjack/skyjack.pl');
                 response.write("OK");
                 response.end();
 
