@@ -1,0 +1,23 @@
+{
+  "name": "mid_server",
+  "version": "0.0.1",
+  "description": "TODO \t+ readme.md \t+ code refactoring",
+  "main": "mainServer.js",
+  "scripts": {
+    "start": "node mainServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sn1p3r46/midServer.git"
+  },
+  "author": "Andrea Galloni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sn1p3r46/midServer/issues"
+  },
+  "homepage": "https://github.com/sn1p3r46/midServer#readme",
+  "config": {
+    "port": 8081
+  }
+}

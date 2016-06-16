@@ -1,0 +1,6 @@
+/bin
+*OLD*
+*.log
+node_modules
+conf_vars_*
+auto.sh

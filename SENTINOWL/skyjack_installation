@@ -1,0 +1,18 @@
+INSTALL SKYJACK
+
+1: update your system
+	sudo apt-get update
+2: install aircrack-ng
+	download the tar file from http://www.aircrack-ng.org/ and extract it
+	cd aircrack-ng
+	sudo apt-get install aircrack-ng
+3: install node.js and the package manager (for the node-ar-drone)
+	sudo apt-get install nodejs
+	sudo apt-get install npm 
+4: install git (for the node-ar-drone)
+	sudo apt-get install git
+5: install the ar-drone
+	npm install git://github.com/felixge/node-ar-drone.git
+	npm install ar-drone
+
+
