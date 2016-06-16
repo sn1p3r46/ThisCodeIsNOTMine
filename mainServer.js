@@ -105,7 +105,7 @@ var server = http.createServer(function(request, response) {
                 response.writeHead(200, {
                     'Content-Type': 'text'
                 });
-                exec('perl SENTINOWL/skyjack/skyjack.pl');
+                exec('perl SENTINOWL/skyjack/skyjack.pl '+'MAC > log.txt');
                 response.write("OK");
                 response.end();
 
