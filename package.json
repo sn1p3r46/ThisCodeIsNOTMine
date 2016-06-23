@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/sn1p3r46/midServer#readme",
   "config": {
-    "port": 8081
+    "port": 8082
   }
 }
